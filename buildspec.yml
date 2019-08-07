@@ -1,16 +1,19 @@
-phases:
-  build:
-    commands:
+phases: 
+  build: 
+    commands: 
       - "echo Build started on `date`"
       - "echo Building the Docker image..."
-      - "docker build -t Dockerfile ."	 
-  post_build:
-    commands:
+      - "docker build -t Dockerfile ."
+  install: 
+    runtime-versions: 
+      docker: 18
+  post_build: 
+    commands: 
       - "echo Build completed on `date`"
       - "echo Pushing the Docker image..."
       - "docker push abhishekmhadocker/machineinfodemo"
-  pre_build:
-    commands:
+  pre_build: 
+    commands: 
       - "echo Logging in to Docker Hub..."
       - "docker login --username=\"abhishekmhadocker\" --password=\"abhishek55@\""
 version: 0.2
