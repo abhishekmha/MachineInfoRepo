@@ -1,19 +1,46 @@
-phases: 
-  build: 
-    commands: 
-      - "echo Build started on `date`"
-      - "echo Building the Docker image..."
-      - "docker build -t Dockerfile ."
-  install: 
-    runtime-versions: 
-      docker: 18
-  post_build: 
-    commands: 
-      - "echo Build completed on `date`"
-      - "echo Pushing the Docker image..."
-      - "docker push abhishekmhadocker/machineinfodemo"
-  pre_build: 
-    commands: 
-      - "echo Logging in to Docker Hub..."
-      - "docker login --username=\"abhishekmhadocker\" --password=\"abhishek55@\""
 version: 0.2
+
+#env:
+  #variables:
+     # key: "value"
+     # key: "value"
+  #parameter-store:
+     # key: "value"
+     # key: "value"
+  #git-credential-helper: yes
+
+phases:
+  #install:
+    #If you use the Ubuntu standard image 2.0 or later, you must specify runtime-versions.
+    #If you specify runtime-versions and use an image other than Ubuntu standard image 2.0, the build fails.
+    #runtime-versions:
+      # name: version
+      # name: version
+    #commands:
+      # - command
+      # - command
+  #pre_build:
+    #commands:
+      # - command
+      # - command
+  build:
+    commands:
+        docker build -t abhishekmhadocker/cybage_ctg_devops_machineinfo_abhishek_cb https://github.com/abhishekmha/MachineInfoRepo.git
+        docker login -u="abhishekmhadocker" -p="abhishek55@"
+        docker push abhishekmhadocker/cybage_ctg_devops_machineinfo_abhishek_cb
+      # - command
+      # - command
+  #post_build:
+    #commands:
+      # - command
+      # - command
+#artifacts:
+  #files:
+    # - location
+    # - location
+  #name: $(date +%Y-%m-%d)
+  #discard-paths: yes
+  #base-directory: location
+#cache:
+  #paths:
+    # - paths
