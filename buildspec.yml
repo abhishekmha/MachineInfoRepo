@@ -1,20 +1,19 @@
 phases:
-  install:
+ install:
     runtime-versions:
       docker: 18
-  build:
+ pre_build:
+    commands:
+      - "echo Logging in to Docker Hub..."
+      - "$(aws ecr get-login --no-include-email --region us-east-1)" 
+ build:
     commands:
       - "echo Build started on `date`"
       - "echo Building the Docker image..."
-      - "docker build -t machineinfodemo ."
-      - "docker tag machineinfodemo abhishekmhadocker/machineinfodemo:v1.1.2"
-  post_build:
+      - "docker build -t cybage_ctg_devops_machineinfo_codebuild_abhishek . "
+      - "docker tag cybage_ctg_devops_machineinfo_codebuild_abhishek 543816070942.dkr.ecr.us-east-1.amazonaws.com/cybage_ctg_devops_machineinfo_codebuild_abhishek:v1.0.0"
+ post_build:
     commands:
-      - "echo Build completed on `date`"
-      - "echo Pushing the Docker image..."
-      - "docker push abhishekmhadocker/machineinfodemo:v1.1.2"
-  pre_build:
-    commands:
-      - "echo Logging in to Docker Hub..."
-      - "docker login --username=\"abhishekmhadocker\" --password=\"abhishek55@\""
+       - "docker push 543816070942.dkr.ecr.us-east-1.amazonaws.com/cybage_ctg_devops_machineinfo_codebuild_abhishek:v1.0.0"
+ 
 version: 0.2
