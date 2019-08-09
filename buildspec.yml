@@ -6,12 +6,12 @@ phases:
     commands:
       - "echo Build started on `date`"
       - "echo Building the Docker image..."
-      - "docker build -t machineinfodemo ."	 
+      - "docker build -t cybage_ctg_devops_machineinfo_abhishek_cb ."	 
   post_build:
     commands:
       - "echo Build completed on `date`"
       - "echo Pushing the Docker image..."
-      - "docker push abhishekmhadocker/machineinfodemo:v1.1.2"
+      - "docker push abhishekmhadocker/cybage_ctg_devops_machineinfo_abhishek_cb:v1.1.2"
   pre_build:
     commands:
       - "echo Logging in to Docker Hub..."
